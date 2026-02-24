@@ -1,1 +1,18 @@
-* @enzogaggiotti
+.dockerignore @enzogaggiotti
+Dockerfile @enzogaggiotti
+
+.github @enzogaggiotti
+pre-commit-config.yaml @enzogaggiotti
+
+LICENSE @enzogaggiotti
+README.md @enzogaggiotti
+docs @enzogaggiotti
+
+package.json @enzogaggiotti
+package-lock.json @enzogaggiotti
+public @enzogaggiotti
+eslint.config.js @enzogaggiotti
+index.html @enzogaggiotti
+tscconfig.json @enzogaggiotti
+next.config.js @enzogaggiotti
+src @enzogaggiotti
