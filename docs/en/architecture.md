@@ -1,3 +1,3 @@
-# Architecture | Aegis-AI-Landing
+# Aegis AI Landing Page
 
-Document initialisé pour les tests de récupération Docusaurus par le plugin remote-content.
+The public face of the enterprise offensive cyberdefense platform. Optimally designed to highlight the MVP features including the Zero-Trust microservice grid and LLM-powered pentesting orchestrators.
