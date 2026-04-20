@@ -1,35 +1,75 @@
-# 🌍 Aegis AI - Landing Site (Public Zone)
+# 🌍 Aegis AI — Public Landing & Trust Center
 
 **Project ID:** AEGIS-CORE-2026
 
-## 🏗️ System Architecture & Role
+> The **Aegis AI Landing Site** is the public face of the platform. Designed for extreme performance and SEO, it serves as the "Trust Center" where potential users can explore the platform's vision, compliance certifications, and technical documentation.
 
-The **Aegis AI Landing** repository contains the code for the public organizational site hosted at `www.aegis.ai`. It handles global marketing, external documentation hosting (Docs as Code), and provides an interactive visual mockup demo.
+---
 
-- **Tech Stack:** Next.js (SSG - Static Site Generation) / Astro.
-- **Role:** Conversion, trust reinforcement (compliance certifications presentation), and secure traffic funneling to the private portal.
-- **Optimization:** Fully statically generated and served entirely from an Edge CDN (Vercel/Cloudflare) to guarantee extreme SEO ranking and split-second Response times.
+## 🏗️ Role in the Ecosystem
 
-## 🔐 Security & Dual-Interface Strategy
+The Landing site is strategically isolated from the core infrastructure to minimize the platform's attack surface.
 
-- **Zero Trust Boundary:** The Landing site forms part of our strategic "Attack Surface Reduction". As it executes entirely as static HTML/JS/CSS, it contains **Zero API Access** to the Kubernetes Core and holds **no read/write logic** to production databases.
-- **Protection:** In case of DDoS or web-defacement, the `app.aegis.ai` private environment stays physically unimpacted.
+- **Marketing Hub**: High-conversion landing pages and interactive product demos.
+- **Documentation Hosting**: Serves as the primary entry point for the **Docs-as-Code** platform.
+- **Trust Center**: Transparently displays security posture, compliance (SOC2/ISO), and uptime.
 
-## 🐳 Docker / CDN Deployment
+```mermaid
+graph TD
+    Public([Public Traffic]) -- "HTTPS / CDN" --> Landing[Landing Site (Next.js)]
+    Landing -- "Link" --> Dashboard[Private Portal (app.aegis.ai)]
+    Landing -- "Static Content" --> Docs[Documentation Hub]
+```
 
-Deployable natively to Edge providers, but containerized for platform-parity.
+---
+
+## 🛠️ Tech Stack
+
+| Component  | Technology        | Version |
+| ---------- | ----------------- | ------- |
+| Framework  | **Next.js** (SSG) | 14.x    |
+| Styling    | **Tailwind CSS**  | 3.x     |
+| Animations | **Framer Motion** | 10.x    |
+| Hosting    | **CDN Optimized** | —       |
+
+---
+
+## 🔐 Security & Surface Reduction
+
+- **Static Generation (SSG)**: The site is fully pre-rendered at build time. It contains **zero** runtime connections to the Aegis production databases or Kubernetes core.
+- **Domain Separation**: Hosted on `www.aegis.ai`, completely decoupled from the application domain (`app.aegis.ai`) to prevent cross-site scripting (XSS) and session leakage risks.
+- **DDoS Resilience**: Leveraging global Edge networks to absorb high-intensity traffic without affecting the private dashboard.
+
+---
+
+## 🐳 Deployment (Docker)
 
 ```bash
 docker pull ghcr.io/aegis-ai/aegis-landing:latest
 
 # Serving as a highly optimized static container
-infisical run --env=prod -- docker run -d \
+docker run -d \
   --name aegis-landing \
   --read-only \
-  --cap-drop=ALL \
-  --security-opt no-new-privileges:true \
-  --user 10001:10001 \
   -p 80:80 \
-  -e INFISICAL_TOKEN=$INFISICAL_TOKEN \
   ghcr.io/aegis-ai/aegis-landing:latest
 ```
+
+---
+
+## 🛠️ Development
+
+```bash
+# Install dependencies
+npm install
+
+# Run dev server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+---
+
+_Aegis AI — Marketing & Trust Engineering — 2026_
