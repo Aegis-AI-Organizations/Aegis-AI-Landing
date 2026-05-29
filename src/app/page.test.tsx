@@ -4,27 +4,37 @@ import Home from "./page";
 
 vi.mock("next/image", () => ({
   default: ({
-    priority: _priority,
+    priority,
+    alt = "",
     ...props
-  }: React.ImgHTMLAttributes<HTMLImageElement> & { priority?: boolean }) => (
-    <img {...props} />
-  ),
+  }: React.ImgHTMLAttributes<HTMLImageElement> & { priority?: boolean }) => {
+    void priority;
+
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img alt={alt} {...props} />
+    );
+  },
 }));
 
 describe("landing home page", () => {
-  it("renders the public call-to-action content", () => {
+  it("renders the construction landing page", () => {
     render(<Home />);
 
+    expect(screen.getByAltText("Aegis AI")).toHaveAttribute(
+      "src",
+      "/logo.svg",
+    );
+    expect(screen.getByText("Lancement en cours")).toBeInTheDocument();
     expect(
-      screen.getByText("To get started, edit the page.tsx file."),
+      screen.getByRole("heading", {
+        name: "Le site Aegis AI est en construction.",
+      }),
     ).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Deploy Now/ })).toHaveAttribute(
-      "href",
-      expect.stringContaining("vercel.com/new"),
-    );
-    expect(screen.getByRole("link", { name: "Documentation" })).toHaveAttribute(
-      "href",
-      expect.stringContaining("nextjs.org/docs"),
-    );
+    expect(
+      screen.getByText(/La landing page publique arrive prochainement/i),
+    ).toBeInTheDocument();
+    expect(screen.queryByText("Deploy Now")).not.toBeInTheDocument();
+    expect(screen.queryByText("Documentation")).not.toBeInTheDocument();
   });
 });
