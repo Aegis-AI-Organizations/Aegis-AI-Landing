@@ -21,10 +21,7 @@ describe("landing home page", () => {
   it("renders the construction landing page", () => {
     render(<Home />);
 
-    expect(screen.getByAltText("Aegis AI")).toHaveAttribute(
-      "src",
-      "/logo.svg",
-    );
+    expect(screen.getByAltText("Aegis AI")).toHaveAttribute("src", "/logo.svg");
     expect(screen.getByText("Lancement en cours")).toBeInTheDocument();
     expect(
       screen.getByRole("heading", {
