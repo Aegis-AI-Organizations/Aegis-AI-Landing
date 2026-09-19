@@ -39,9 +39,11 @@ jobs:
         fi
 
     - name: Validate PR Title Format
+      env:
+        PR_TITLE: ${{ github.event.pull_request.title }}
       if: github.event_name == 'pull_request'
       run: |
-        if ! echo "${{ github.event.pull_request.title }}" | grep -qE "^\[(CHORE|FEAT|ADD|FIX|UPDATE|REMOVE|DOC|REFACTOR|TEST|CI|CONFIG|MERGE|WORK|WIP|REBASE)\] "; then
+        if ! printf '%s\n' "$PR_TITLE" | grep -qE "^\[(CHORE|FEAT|ADD|FIX|UPDATE|REMOVE|DOC|REFACTOR|TEST|CI|CONFIG|MERGE|WORK|WIP|REBASE)\] "; then
           echo "::error::Invalid PR title. Expected format: [TYPE] Message in English"
           exit 1
         fi

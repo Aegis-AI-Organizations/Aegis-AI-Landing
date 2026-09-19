@@ -6,8 +6,8 @@ export default defineConfig({
     setupFiles: "./vitest.setup.ts",
     coverage: {
       provider: "v8",
-      all: true,
-      include: ["src/app/**/*.{ts,tsx}"],
+      include: ["src/**/*.{ts,tsx}"],
+      exclude: ["src/**/*.test.{ts,tsx}"],
       thresholds: {
         lines: 80,
         statements: 80,

@@ -1,75 +1,54 @@
-# 🌍 Aegis AI — Public Landing & Trust Center
+# Aegis AI Landing
 
-**Project ID:** AEGIS-CORE-2026
+Public, bilingual presentation of Aegis AI, with an illustrative dashboard and scroll-driven product walkthrough. The demo uses fictional data and does not connect to the platform, run scans, or access infrastructure.
 
-> The **Aegis AI Landing Site** is the public face of the platform. Designed for extreme performance and SEO, it serves as the "Trust Center" where potential users can explore the platform's vision, compliance certifications, and technical documentation.
+## Development
 
----
-
-## 🏗️ Role in the Ecosystem
-
-The Landing site is strategically isolated from the core infrastructure to minimize the platform's attack surface.
-
-- **Marketing Hub**: High-conversion landing pages and interactive product demos.
-- **Documentation Hosting**: Serves as the primary entry point for the **Docs-as-Code** platform.
-- **Trust Center**: Transparently displays security posture, compliance (SOC2/ISO), and uptime.
-
-```mermaid
-graph TD
-    Public([Public Traffic]) -- "HTTPS / CDN" --> Landing[Landing Site (Next.js)]
-    Landing -- "Link" --> Dashboard[Private Portal (app.aegis.ai)]
-    Landing -- "Static Content" --> Docs[Documentation Hub]
-```
-
----
-
-## 🛠️ Tech Stack
-
-| Component  | Technology        | Version |
-| ---------- | ----------------- | ------- |
-| Framework  | **Next.js** (SSG) | 14.x    |
-| Styling    | **Tailwind CSS**  | 3.x     |
-| Animations | **Framer Motion** | 10.x    |
-| Hosting    | **CDN Optimized** | —       |
-
----
-
-## 🔐 Security & Surface Reduction
-
-- **Static Generation (SSG)**: The site is fully pre-rendered at build time. It contains **zero** runtime connections to the Aegis production databases or Kubernetes core.
-- **Domain Separation**: Hosted on `www.aegis.ai`, completely decoupled from the application domain (`app.aegis.ai`) to prevent cross-site scripting (XSS) and session leakage risks.
-- **DDoS Resilience**: Leveraging global Edge networks to absorb high-intensity traffic without affecting the private dashboard.
-
----
-
-## 🐳 Deployment (Docker)
+Use Node.js 22 and npm. No environment variables or backend services are required.
 
 ```bash
-docker pull ghcr.io/aegis-ai/aegis-landing:latest
-
-# Serving as a highly optimized static container
-docker run -d \
-  --name aegis-landing \
-  --read-only \
-  -p 80:80 \
-  ghcr.io/aegis-ai/aegis-landing:latest
+npm ci
+npm run dev -- --port 3001
 ```
 
----
+Open http://localhost:3001/fr or http://localhost:3001/en. The root redirects to French. External links open the dashboard and technical documentation.
 
-## 🛠️ Development
+## Structure
+
+- `src/app/[lang]`: localized routes, document language and metadata.
+- `src/components`: landing content and interactive dashboard preview.
+- `src/hooks/useLandingMotion.ts`: scoped GSAP timelines and cleanup.
+- `src/i18n`: language context and English translations of French source strings.
+- `src/app/globals.css`: responsive styles and reduced-motion alternatives.
+
+Stack: Next.js 16, React 19, TypeScript, Tailwind CSS 4, GSAP and ScrollTrigger. Next.js generates both locale pages at build time; the standalone Node server handles routing and image optimization. This is not a static-export deployment. Google fonts are fetched at build time and served by Next.js.
+
+## Checks and contributions
 
 ```bash
-# Install dependencies
-npm install
-
-# Run dev server
-npm run dev
-
-# Build for production
+pre-commit install --hook-type pre-commit --hook-type commit-msg
+npm run lint
+npm run coverage
 npm run build
+pre-commit run --all-files
 ```
 
----
+Run pre-commit before every push. Commits use `[TYPE] Message in English`: uppercase bracketed type, concise imperative wording, preferably no more than 72 characters. Examples: `[ADD] Add bilingual landing experience`, `[FIX] Preserve keyboard navigation`, `[DOC] Update local setup instructions`.
 
-_Aegis AI — Marketing & Trust Engineering — 2026_
+Tests cover interactions, localization, routing and animation lifecycle. GSAP is mocked in unit tests: these checks do not measure visual smoothness. Before merging visual changes, check both languages, desktop/mobile layouts, scroll reversal, keyboard navigation and reduced motion in a browser.
+
+## Production
+
+```bash
+npm run build
+npm start
+```
+
+Or build the standalone container (requires network access for dependencies and fonts):
+
+```bash
+docker build -t aegis-landing .
+docker run --rm -p 3001:3000 aegis-landing
+```
+
+The runtime runs as a non-root user. Pull requests run formatting, commit-format validation, ESLint, build and coverage. Merges to `main` also trigger the repository's existing release and container-publishing workflow.
