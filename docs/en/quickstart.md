@@ -44,4 +44,4 @@ Dashboard login or onboarding flow.
 
 ---
 
-*Aegis AI Marketing & Trust Engineering — 2026*
+_Aegis AI Marketing & Trust Engineering — 2026_

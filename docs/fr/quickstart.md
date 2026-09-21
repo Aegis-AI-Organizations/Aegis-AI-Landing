@@ -46,4 +46,4 @@ produit passe par la connexion ou l'onboarding du Dashboard.
 
 ---
 
-*Marketing et Ingénierie de la Confiance Aegis AI — 2026*
+_Marketing et Ingénierie de la Confiance Aegis AI — 2026_

@@ -22,4 +22,4 @@ télémétrie opérationnelle du Dashboard.
 
 ---
 
-*Marketing et Ingénierie de la Confiance Aegis AI — 2026*
+_Marketing et Ingénierie de la Confiance Aegis AI — 2026_
