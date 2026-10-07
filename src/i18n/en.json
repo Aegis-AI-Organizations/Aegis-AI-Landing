@@ -166,5 +166,8 @@
   "Preuves disponibles : point d’entrée, description et observation.": "Available evidence: entry point, description and observation.",
   "Explorer les preuves →": "Explore evidence →",
   "Du scan au rapport.": "From scan to report.",
-  "Retrouvez le contexte de chaque constat.": "Find the context behind every finding."
+  "Retrouvez le contexte de chaque constat.": "Find the context behind every finding.",
+  "API Swagger": "Swagger API",
+  "Explorer l’API Swagger": "Explore the Swagger API",
+  "Tarifs": "Pricing"
 }

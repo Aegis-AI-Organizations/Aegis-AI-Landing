@@ -3035,3 +3035,46 @@ footer button {
     margin: 0;
   }
 }
+
+/* Shared navigation accommodates the journal, pricing and documentation. */
+.nav nav {
+  gap: clamp(12px, 1.8vw, 26px);
+}
+.nav nav [aria-current="page"] {
+  color: var(--cyan);
+}
+@media (min-width: 561px) and (max-width: 1100px) {
+  .nav-cta {
+    display: none;
+  }
+}
+@media (min-width: 561px) and (max-width: 1000px) {
+  .menu-toggle {
+    display: block;
+    border: 0;
+    background: none;
+    color: #e2efe8;
+  }
+  .nav nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #0c1222;
+    padding: 25px 6%;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav nav.open {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+}
+
+@media (min-width: 561px) and (max-width: 1000px) {
+  .language-switch {
+    margin-left: auto;
+    margin-right: 16px;
+  }
+}

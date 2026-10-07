@@ -1,0 +1,28 @@
+import { Inter } from "next/font/google";
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-admin",
+  display: "swap",
+});
+import config from "@payload-config";
+import "@payloadcms/next/css";
+import { RootLayout, handleServerFunctions } from "@payloadcms/next/layouts";
+import type { ServerFunctionClient } from "payload";
+import { importMap } from "./admin/importMap";
+import "./custom.css";
+const serverFunction: ServerFunctionClient = async (args) => {
+  "use server";
+  return handleServerFunctions({ ...args, config, importMap });
+};
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <RootLayout
+      htmlProps={{ className: inter.variable }}
+      config={config}
+      importMap={importMap}
+      serverFunction={serverFunction}
+    >
+      {children}
+    </RootLayout>
+  );
+}

@@ -26,6 +26,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   return {
+    metadataBase: new URL(process.env.SITE_URL || "http://localhost:3001"),
     title:
       lang === "en"
         ? "Aegis AI — Your infrastructure. Put to the test."

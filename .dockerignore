@@ -9,3 +9,8 @@ coverage/
 .git
 .github/
 .vscode/
+
+# Never bake CMS content or user uploads into the image
+*.db
+*.db-*
+media/

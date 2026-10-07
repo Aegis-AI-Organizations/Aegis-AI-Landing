@@ -12,6 +12,9 @@ ENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 PORT=3000 HOSTNAME=0.0.0.0
 COPY --from=builder --chown=node:node /app/public ./public
 COPY --from=builder --chown=node:node /app/.next/standalone ./
 COPY --from=builder --chown=node:node /app/.next/static ./.next/static
+RUN mkdir -p /app/data/media && chown -R node:node /app/data
+ENV DATABASE_URI=file:/app/data/aegis-content.db MEDIA_DIR=/app/data/media
+VOLUME ["/app/data"]
 USER node
 EXPOSE 3000
 CMD ["node", "server.js"]
