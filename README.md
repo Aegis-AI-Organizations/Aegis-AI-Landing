@@ -136,3 +136,15 @@ changes with `npm run cms:types` and `npm run cms:importmap`.
 Track landing work in the Aegis GitHub Project's current sprint. Start each change from an issue with acceptance criteria, use a dedicated branch, then open a PR targeting `main` with `Closes #<issue-number>`. Run the relevant tests, lint, build and pre-commit before pushing. Merge after successful required checks and review; use auto-merge when authorized. Do not mark local-only changes as delivered until the PR is merged.
 
 Current tracking: #8 editorial CMS/blog, #9 minimal media explorer, #10 journal visual validation, #11 production readiness. Existing #5 tracks landing sections including pricing.
+
+### Disposable blog preview
+
+After `npm run build`, run `npm run preview:blog` to review French and English articles at
+`http://localhost:3002/fr/blog` and `/en/blog`. This creates its own temporary database and media
+directory, with long titles, a cover image, paragraphs, a heading, a list and a link. It does not
+seed the editorial database or create an administrator. Stop with Ctrl+C to remove the fixtures.
+
+Validation on 2026-10-07: both article languages rendered at 390px without horizontal overflow;
+the French index was also reviewed on desktop. Publication, draft privacy, private preview and
+unpublishing are covered by `test:cms`; empty states and preview guards by the unit suite.
+Before publishing real content, review its actual images and copy in the private preview.
