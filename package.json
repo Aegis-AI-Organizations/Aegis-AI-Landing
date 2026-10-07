@@ -14,11 +14,13 @@
     "cms:importmap": "payload generate:importmap",
     "cms:migrate": "payload migrate",
     "cms:setup": "node scripts/setup-cms.mjs",
-    "test:cms": "tsx scripts/test-cms.mts"
+    "test:cms": "tsx scripts/test-cms.mts",
+    "test:mailpit": "tsx scripts/test-mailpit.mts"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@payloadcms/db-sqlite": "3.90.2",
+    "@payloadcms/email-nodemailer": "3.90.2",
     "@payloadcms/next": "3.90.2",
     "@payloadcms/richtext-lexical": "3.90.2",
     "@payloadcms/translations": "3.90.2",

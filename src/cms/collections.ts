@@ -22,6 +22,14 @@ export const Users: CollectionConfig = {
       async ({ data, operation, req }) => {
         // Payload's first-user flow bypasses collection access. Only that first account becomes admin.
         if (operation === "create" && !req.user) {
+          if (
+            process.env.NODE_ENV === "production" &&
+            !(req.payloadAPI === "local" && req.context?.bootstrapCMS === true)
+          ) {
+            throw new Error(
+              "Public administrator bootstrap is disabled in production.",
+            );
+          }
           const { totalDocs } = await req.payload.count({
             collection: "users",
             req,
