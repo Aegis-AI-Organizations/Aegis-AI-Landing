@@ -1,8 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import { SiteHeader } from "./SiteHeader";
 import { useLanguage } from "../i18n/Language";
 import { DashboardPreview, dashboardViews } from "./DashboardPreview";
 import { useLandingMotion } from "../hooks/useLandingMotion";
@@ -16,11 +15,10 @@ import {
   ChevronRight,
   Terminal,
   Layers,
-  Menu,
-  X,
 } from "lucide-react";
 
-const docs = "https://aegis-ai-organizations.github.io/Aegis-AI-Documentation";
+const documentationBase =
+  "https://aegis-ai-organizations.github.io/Aegis-AI-Documentation";
 const steps = [
   {
     title: "Comprendre le terrain.",
@@ -159,8 +157,12 @@ function ScrollColor({ children }: { children: string }) {
 
 export default function Home() {
   const { t, locale } = useLanguage();
+  const documentationRoot = `${documentationBase}${
+    locale === "fr" ? "/fr" : ""
+  }/docs`;
+  const docs = `${documentationRoot}/Agent/architecture/`;
+  const apiReference = `${documentationRoot}/Swagger-API/aegis-ai-gateway-api/`;
   const root = useRef<HTMLElement>(null);
-  const [menu, setMenu] = useState(false);
   const [finding, setFinding] = useState<"sqli" | "xss">("sqli");
   const [quiet, setQuiet] = useState(false);
   const [dashboardView, setDashboardView] = useState(0);
@@ -171,63 +173,7 @@ export default function Home() {
       <a className="skip" href="#experience">
         {t("Aller à la démonstration")}
       </a>
-      <header className="nav">
-        <a href="#" className="brand" aria-label={t("Aegis AI — accueil")}>
-          <Image src="/logo.png" alt="" width={42} height={42} />
-          <span>
-            AEGIS<span className="brand-ai">AI</span>
-          </span>
-        </a>
-        <nav
-          className={menu ? "open" : ""}
-          aria-label={t("Navigation principale")}
-        >
-          <a href="#dashboard" onClick={() => setMenu(false)}>
-            {t("La plateforme")}
-          </a>
-          <a href="#preuves" onClick={() => setMenu(false)}>
-            {t("Les preuves")}
-          </a>
-          <a href={docs} target="_blank" rel="noreferrer">
-            Documentation <ArrowUpRight size={13} />
-          </a>
-        </nav>
-        <div
-          className="language-switch"
-          aria-label={locale === "fr" ? "Langue du site" : "Site language"}
-        >
-          <Link
-            href="/fr"
-            lang="fr"
-            hrefLang="fr"
-            aria-label="Français"
-            aria-current={locale === "fr" ? "page" : undefined}
-          >
-            FR
-          </Link>
-          <Link
-            href="/en"
-            lang="en"
-            hrefLang="en"
-            aria-label="English"
-            aria-current={locale === "en" ? "page" : undefined}
-          >
-            EN
-          </Link>
-        </div>
-        <a className="nav-cta" href="https://app.aegis-ai.fr">
-          {t("Ouvrir le dashboard")}
-          <ArrowUpRight size={16} />
-        </a>
-        <button
-          className="menu-toggle"
-          aria-label={menu ? t("Fermer le menu") : t("Ouvrir le menu")}
-          aria-expanded={menu}
-          onClick={() => setMenu(!menu)}
-        >
-          {menu ? <X /> : <Menu />}
-        </button>
-      </header>
+      <SiteHeader />
       <section className="hero">
         <div className="hero-layout">
           <div className="hero-copy">
@@ -711,6 +657,15 @@ export default function Home() {
         </a>
         <a className="text-link" href={docs} target="_blank" rel="noreferrer">
           {t("Lire la documentation")}
+          <ArrowUpRight size={15} />
+        </a>
+        <a
+          className="text-link"
+          href={apiReference}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {t("Explorer l’API Swagger")}
           <ArrowUpRight size={15} />
         </a>
         <span className="closing-mark" aria-hidden="true">

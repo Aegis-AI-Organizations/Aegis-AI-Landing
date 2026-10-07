@@ -9,15 +9,28 @@
     "lint": "eslint",
     "test": "vitest",
     "test:run": "vitest run",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "cms:types": "payload generate:types",
+    "cms:importmap": "payload generate:importmap",
+    "cms:migrate": "payload migrate",
+    "cms:setup": "node scripts/setup-cms.mjs",
+    "test:cms": "tsx scripts/test-cms.mts"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@payloadcms/db-sqlite": "3.90.2",
+    "@payloadcms/next": "3.90.2",
+    "@payloadcms/richtext-lexical": "3.90.2",
+    "@payloadcms/translations": "3.90.2",
+    "@payloadcms/ui": "3.90.2",
+    "graphql": "^16.14.2",
     "gsap": "^3.15.0",
     "lucide-react": "^1.43.0",
     "next": "^16.3.4",
+    "payload": "3.90.2",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "sharp": "^0.35.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -31,7 +44,15 @@
     "eslint-config-next": "^16.3.4",
     "jsdom": "^26.1.0",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5",
     "vitest": "^4.1.11"
+  },
+  "type": "module",
+  "overrides": {
+    "undici": "^7.29.1",
+    "@esbuild-kit/core-utils": {
+      "esbuild": "^0.25.12"
+    }
   }
 }
