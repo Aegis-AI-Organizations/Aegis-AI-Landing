@@ -14,7 +14,17 @@ const { default: config } = await import("../src/payload.config");
 const payload = await getPayload({ config });
 try {
   const password = randomBytes(24).toString("hex");
+  if (process.env.NODE_ENV === "production") {
+    await assert.rejects(
+      payload.create({
+        collection: "users",
+        data: { email: "intruder@example.test", name: "Blocked", password },
+      }),
+      /bootstrap is disabled/,
+    );
+  }
   const admin = await payload.create({
+    context: { bootstrapCMS: true },
     collection: "users",
     data: {
       name: "Test admin",

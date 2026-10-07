@@ -4,7 +4,7 @@ Public, bilingual presentation of Aegis AI, with an illustrative dashboard and s
 
 ## Development
 
-Use Node.js 22 and npm. No environment variables or backend services are required.
+Use Node.js 22 and npm. Run `npm run cms:setup` once to create the local CMS environment.
 
 ```bash
 npm ci
@@ -82,8 +82,13 @@ Do not upload confidential documents. JPEG, PNG, WebP and AVIF images are suppor
 Content persists in `aegis-content.db`; uploads persist in `media/`. Both are ignored by Git.
 Back up both together, along with the secret stored in `.env.local`. No sample articles or default
 passwords are installed in your real database. The public journal intentionally has an empty state.
-Email delivery is not configured: password-reset messages are logged locally. Configure an email
-adapter before exposing the CMS publicly; no email is actually sent by this setup.
+SMTP is configurable. Local setup uses Mailpit at 127.0.0.1:1025, with its mailbox at
+http://127.0.0.1:8025. Start it using `mailpit --listen 127.0.0.1:8025 --smtp 127.0.0.1:1025`.
+Mailpit captures messages without external delivery. `npm run test:mailpit` verifies delivery,
+reset URL, password replacement and single-use tokens on an isolated database. CI runs this test
+against a Mailpit service. Never expose the Mailpit inbox publicly.
+For real SMTP later, configure SMTP_HOST, SMTP_PORT, SMTP_FROM_ADDRESS and, if required, SMTP_USER,
+SMTP_PASSWORD, SMTP_SECURE (implicit TLS) or SMTP_REQUIRE_TLS (STARTTLS). Keep credentials outside Git.
 
 ### Deployment
 
@@ -97,7 +102,18 @@ test credentials or generate a new secret on each boot. The Docker image expects
 at `/app/data`, writable by its `node` user. This volume contains both the SQLite database and media.
 On a fresh production database, the versioned migrations are applied at startup. Future schema changes
 need a new `payload migrate:create` migration. Do not point production at a development database managed
-by automatic schema push. Initialize the first administrator privately before exposing the site.
+by automatic schema push. The production first-user page returns 404 and anonymous user creation is rejected even on an empty database.
+To provision the first administrator privately on startup, set CMS_BOOTSTRAP_EMAIL and
+CMS_BOOTSTRAP_PASSWORD_FILE to a mounted secret file (minimum 16 characters), optionally CMS_BOOTSTRAP_NAME.
+Remove this bootstrap configuration and file after provisioning. Existing accounts are never reset by startup.
+Production requires a persistent PAYLOAD_SECRET of at least 32 characters. The reset link uses SITE_URL.
+Do not reuse a development database managed by schema push in production.
+
+Infrastructure preparation and backup/restore instructions live in Aegis-AI-Infra's
+`docs/landing-cms.md` (sub-issue #69). Its overlay is opt-in until secrets, storage and a verified CMS image exist.
+
+For work spanning repositories, use one parent issue and one linked sub-issue per repository.
+Each repository PR closes its own sub-issue; close the parent after all sub-issues and shared acceptance criteria are fulfilled.
 
 ### Validation
 
