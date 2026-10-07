@@ -15,7 +15,8 @@
     "cms:migrate": "payload migrate",
     "cms:setup": "node scripts/setup-cms.mjs",
     "test:cms": "tsx scripts/test-cms.mts",
-    "test:mailpit": "tsx scripts/test-mailpit.mts"
+    "test:mailpit": "tsx scripts/test-mailpit.mts",
+    "preview:blog": "NODE_ENV=production tsx scripts/preview-blog.mts"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
