@@ -148,3 +148,13 @@ Validation on 2026-10-07: both article languages rendered at 390px without horiz
 the French index was also reviewed on desktop. Publication, draft privacy, private preview and
 unpublishing are covered by `test:cms`; empty states and preview guards by the unit suite.
 Before publishing real content, review its actual images and copy in the private preview.
+
+### Writing articles
+
+The article form puts the title and rich text first; the summary, cover and publication metadata live
+in the sidebar. **Mode rédaction** hides that sidebar without removing its fields or changing saved
+values. A live word count includes text and editorial blocks. The persistent toolbar and `/` menu
+provide headings (H2–H4), emphasis, lists, quotes, links, images with captions and separators. Insert
+callouts, code snippets, tables (up to six columns) and FAQ groups from the block menu. Public articles
+and private previews share the same renderers. Existing plain rich text remains compatible; block
+content is stored in the existing JSON field and needs no database migration.

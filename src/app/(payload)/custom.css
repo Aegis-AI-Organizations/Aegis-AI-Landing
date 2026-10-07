@@ -444,3 +444,67 @@ textarea:focus-visible {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* An uncluttered writing canvas; publication metadata stays in Payload's sidebar. */
+.cms-article-title input {
+  font-size: clamp(24px, 3vw, 38px);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  padding: 18px 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--cms-border);
+  box-shadow: none;
+  border-radius: 0;
+}
+.cms-article-editor {
+  margin-top: 28px;
+}
+.cms-article-editor [contenteditable="true"] {
+  min-height: 60vh;
+  padding: 28px !important;
+  font-size: 17px;
+  line-height: 1.8;
+}
+.cms-article-editor .field-description {
+  font-size: 12px;
+  color: var(--theme-elevation-500);
+}
+@media (max-width: 600px) {
+  .cms-article-editor [contenteditable="true"] {
+    padding: 16px !important;
+  }
+}
+.cms-writing-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--theme-elevation-500);
+  font-size: 12px;
+}
+.cms-writing-tools button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--theme-text);
+  border: 1px solid var(--cms-border);
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.cms-writing-focus .document-fields__sidebar-wrap {
+  display: none;
+}
+.cms-writing-focus .document-fields__main {
+  width: 100%;
+  max-width: 940px;
+  margin: auto;
+}
+.template-default .cms-article-title input {
+  font-size: clamp(24px, 3vw, 38px) !important;
+  line-height: 1.3;
+  min-height: 64px;
+}

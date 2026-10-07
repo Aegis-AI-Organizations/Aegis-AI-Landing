@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { articleEditor } from "./article-editor";
 import {
   adminOnly,
   authenticated,
@@ -126,21 +127,53 @@ export const Posts: CollectionConfig = {
     ],
   },
   fields: [
-    { name: "title", label: "Titre", type: "text", required: true },
+    {
+      name: "title",
+      label: "Titre de l’article",
+      type: "text",
+      required: true,
+      admin: {
+        className: "cms-article-title",
+        placeholder: "Donnez un titre à votre article",
+      },
+    },
     {
       name: "excerpt",
       label: "Résumé",
       type: "textarea",
       required: true,
       maxLength: 320,
+      admin: {
+        position: "sidebar",
+        description: "Le court texte affiché dans le journal.",
+      },
     },
     {
       name: "cover",
       label: "Image de couverture",
+      admin: { position: "sidebar" },
       type: "upload",
       relationTo: "media",
     },
-    { name: "content", label: "Contenu", type: "richText", required: true },
+    {
+      name: "writingTools",
+      type: "ui",
+      admin: {
+        components: { Field: "/src/components/cms/WritingTools#WritingTools" },
+      },
+    },
+    {
+      name: "content",
+      label: "Votre article",
+      type: "richText",
+      required: true,
+      editor: articleEditor,
+      admin: {
+        className: "cms-article-editor",
+        description:
+          "Sélectionnez du texte pour le mettre en forme. Tapez / pour ajouter un bloc. Vos brouillons sont enregistrés automatiquement.",
+      },
+    },
     {
       name: "language",
       label: "Langue",
@@ -205,6 +238,7 @@ export const Posts: CollectionConfig = {
       name: "seo",
       label: "Référencement",
       type: "group",
+      admin: { position: "sidebar" },
       fields: [
         { name: "title", label: "Titre SEO", type: "text", maxLength: 70 },
         {
