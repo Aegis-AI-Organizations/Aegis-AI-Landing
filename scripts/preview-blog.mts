@@ -61,6 +61,10 @@ try {
             format: "",
             indent: 0,
             children: [
+              { type: "block", version: 2, format: "", fields: { blockType: "callout", title: fr ? "À retenir" : "Key takeaway", body: fr ? "Un encadré pour mettre une idée en évidence." : "A callout to highlight an idea.", tone: "tip" } },
+              { type: "block", version: 2, format: "", fields: { blockType: "codeSnippet", filename: "example.json", code: '{ "environment": "demo" }' } },
+              { type: "block", version: 2, format: "", fields: { blockType: "articleTable", caption: fr ? "Périmètre" : "Scope", headers: [{ text: "Service" }, { text: fr ? "État" : "Status" }], rows: [{ cells: [{ text: "API" }, { text: "Demo" }] }] } },
+              { type: "block", version: 2, format: "", fields: { blockType: "articleFAQ", items: [{ question: fr ? "Des données réelles ?" : "Real data?", answer: fr ? "Non, uniquement une démonstration." : "No, demonstration content only." }] } },
               paragraph(
                 fr
                   ? "Ce contenu est une démonstration locale et ne décrit aucun résultat de scan réel."

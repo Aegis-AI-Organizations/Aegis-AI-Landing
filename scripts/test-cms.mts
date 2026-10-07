@@ -217,6 +217,16 @@ try {
       _status: "draft",
     },
   });
+  const enriched = await payload.update({
+    collection: "posts", id: post.id, user: editor, overrideAccess: false, draft: true,
+    data: { content: { ...content, root: { ...content.root, children: [...content.root.children,
+      { type: "block", version: 2, format: "", fields: { blockType: "callout", title: "À retenir", tone: "tip", body: "Un conseil utile." } },
+      { type: "block", version: 2, format: "", fields: { blockType: "codeSnippet", filename: "test.txt", code: "hello world" } },
+      { type: "block", version: 2, format: "", fields: { blockType: "articleTable", caption: "Services", headers: [{ text: "Nom" }, { text: "État" }], rows: [{ cells: [{ text: "API" }, { text: "Prêt" }] }] } },
+      { type: "block", version: 2, format: "", fields: { blockType: "articleFAQ", items: [{ question: "Pourquoi ?", answer: "Pour vérifier le rendu." }] } },
+    ] } } },
+  });
+  assert.equal(enriched.content.root.children.length, 5, "Rich article blocks survive draft persistence");
   assert.equal(
     (await payload.find({ collection: "posts", overrideAccess: false }))
       .totalDocs,

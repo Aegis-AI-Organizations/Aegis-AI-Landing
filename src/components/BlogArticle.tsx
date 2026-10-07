@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { RichText } from "@payloadcms/richtext-lexical/react";
+import { ArticleContent } from "./ArticleContent";
 import type { Post } from "@/payload-types";
 import { categoryLabel } from "@/cms/blog";
 import styles from "./Blog.module.css";
@@ -59,9 +59,7 @@ export function BlogArticle({
             unoptimized
           />
         )}
-        {post.content && (
-          <RichText className={styles.prose} data={post.content} />
-        )}
+        {post.content && <ArticleContent content={post.content} />}
       </article>
     </>
   );

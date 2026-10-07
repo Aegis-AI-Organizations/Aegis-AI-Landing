@@ -168,8 +168,14 @@ export interface User {
 export interface Post {
   id: number;
   title: string;
+  /**
+   * Le court texte affiché dans le journal.
+   */
   excerpt: string;
   cover?: (number | null) | Media;
+  /**
+   * Sélectionnez du texte pour le mettre en forme. Tapez / pour ajouter un bloc. Vos brouillons sont enregistrés automatiquement.
+   */
   content: {
     root: {
       type: string;
