@@ -1,8 +1,13 @@
+import { ArticleActions as ArticleActions_c5376c5a0bc8248e4678d43cbc2c75e6 } from "../../../../src/components/cms/ArticleActions";
 import { WritingTools as WritingTools_03aa9a06bba385fdf10b9a9b873ab5af } from "../../../../src/components/cms/WritingTools";
 import { RscEntryLexicalCell as RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e } from "@payloadcms/richtext-lexical/rsc";
 import { RscEntryLexicalField as RscEntryLexicalField_44fe37237e0ebf4470c9990d8cb7b07e } from "@payloadcms/richtext-lexical/rsc";
 import { LexicalDiffComponent as LexicalDiffComponent_44fe37237e0ebf4470c9990d8cb7b07e } from "@payloadcms/richtext-lexical/rsc";
 import { BlocksFeatureClient as BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from "@payloadcms/richtext-lexical/client";
+import { CalloutBlock as CalloutBlock_adcd39ff1ce326692eccfd179092a9d1 } from "../../../../src/components/cms/ArticleBlocks";
+import { CodeBlock as CodeBlock_adcd39ff1ce326692eccfd179092a9d1 } from "../../../../src/components/cms/ArticleBlocks";
+import { TableBlock as TableBlock_adcd39ff1ce326692eccfd179092a9d1 } from "../../../../src/components/cms/ArticleBlocks";
+import { FAQBlock as FAQBlock_adcd39ff1ce326692eccfd179092a9d1 } from "../../../../src/components/cms/ArticleBlocks";
 import { UploadFeatureClient as UploadFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from "@payloadcms/richtext-lexical/client";
 import { FixedToolbarFeatureClient as FixedToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from "@payloadcms/richtext-lexical/client";
 import { HeadingFeatureClient as HeadingFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from "@payloadcms/richtext-lexical/client";
@@ -23,6 +28,7 @@ import { LinkFeatureClient as LinkFeatureClient_e70f5e05f09f93e00b997edb1ef0c864
 import { BlockquoteFeatureClient as BlockquoteFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from "@payloadcms/richtext-lexical/client";
 import { HorizontalRuleFeatureClient as HorizontalRuleFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from "@payloadcms/richtext-lexical/client";
 import { InlineToolbarFeatureClient as InlineToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from "@payloadcms/richtext-lexical/client";
+import { ArticleActionColumn as ArticleActionColumn_c5376c5a0bc8248e4678d43cbc2c75e6 } from "../../../../src/components/cms/ArticleActions";
 import { FolderTableCell as FolderTableCell_f9c02e79a4aed9a3924487c0cd4cafb1 } from "@payloadcms/next/rsc";
 import { FolderField as FolderField_f9c02e79a4aed9a3924487c0cd4cafb1 } from "@payloadcms/next/rsc";
 import { FolderTypeField as FolderTypeField_2b8867833a34864a02ddf429b0728a40 } from "@payloadcms/next/client";
@@ -36,6 +42,8 @@ import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } f
 
 /** @type import('payload').ImportMap */
 export const importMap = {
+  "/src/components/cms/ArticleActions#ArticleActions":
+    ArticleActions_c5376c5a0bc8248e4678d43cbc2c75e6,
   "/src/components/cms/WritingTools#WritingTools":
     WritingTools_03aa9a06bba385fdf10b9a9b873ab5af,
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell":
@@ -46,6 +54,14 @@ export const importMap = {
     LexicalDiffComponent_44fe37237e0ebf4470c9990d8cb7b07e,
   "@payloadcms/richtext-lexical/client#BlocksFeatureClient":
     BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "/src/components/cms/ArticleBlocks#CalloutBlock":
+    CalloutBlock_adcd39ff1ce326692eccfd179092a9d1,
+  "/src/components/cms/ArticleBlocks#CodeBlock":
+    CodeBlock_adcd39ff1ce326692eccfd179092a9d1,
+  "/src/components/cms/ArticleBlocks#TableBlock":
+    TableBlock_adcd39ff1ce326692eccfd179092a9d1,
+  "/src/components/cms/ArticleBlocks#FAQBlock":
+    FAQBlock_adcd39ff1ce326692eccfd179092a9d1,
   "@payloadcms/richtext-lexical/client#UploadFeatureClient":
     UploadFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#FixedToolbarFeatureClient":
@@ -86,6 +102,8 @@ export const importMap = {
     HorizontalRuleFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#InlineToolbarFeatureClient":
     InlineToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "/src/components/cms/ArticleActions#ArticleActionColumn":
+    ArticleActionColumn_c5376c5a0bc8248e4678d43cbc2c75e6,
   "@payloadcms/next/rsc#FolderTableCell":
     FolderTableCell_f9c02e79a4aed9a3924487c0cd4cafb1,
   "@payloadcms/next/rsc#FolderField":

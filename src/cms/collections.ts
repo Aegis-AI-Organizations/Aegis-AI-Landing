@@ -10,7 +10,7 @@ import {
 export const Users: CollectionConfig = {
   slug: "users",
   labels: { singular: "Membre", plural: "Équipe" },
-  admin: { useAsTitle: "name", group: "Administration" },
+  admin: { useAsTitle: "name", group: "Administration", hideAPIURL: true },
   auth: { maxLoginAttempts: 5, lockTime: 600000 },
   access: {
     create: adminOnly,
@@ -71,7 +71,7 @@ export const Media: CollectionConfig = {
   slug: "media",
   folders: true,
   labels: { singular: "Média", plural: "Médias" },
-  admin: { group: "Publication", useAsTitle: "alt" },
+  admin: { group: "Publication", useAsTitle: "alt", hideAPIURL: true },
   access: {
     read: () => true,
     create: authenticated,
@@ -99,10 +99,20 @@ export const Posts: CollectionConfig = {
   labels: { singular: "Article", plural: "Articles" },
   admin: {
     useAsTitle: "title",
+    components: {
+      beforeListTable: [
+        "/src/components/cms/ArticleActions#ArticleActionColumn",
+      ],
+    },
+    hideAPIURL: true,
     group: "Publication",
-    defaultColumns: ["title", "language", "_status", "updatedAt"],
-    description:
-      "Rédigez, prévisualisez, puis publiez. Chaque langue possède son propre brouillon.",
+    defaultColumns: [
+      "title",
+      "language",
+      "_status",
+      "updatedAt",
+      "articleActions",
+    ],
     preview: (data) => (data.id ? `/preview/${data.id}` : null),
   },
   access: {
@@ -127,6 +137,17 @@ export const Posts: CollectionConfig = {
     ],
   },
   fields: [
+    {
+      name: "articleActions",
+      label: "Actions",
+      type: "ui",
+      admin: {
+        condition: () => false,
+        components: {
+          Cell: "/src/components/cms/ArticleActions#ArticleActions",
+        },
+      },
+    },
     {
       name: "title",
       label: "Titre de l’article",

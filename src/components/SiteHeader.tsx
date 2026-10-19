@@ -18,7 +18,6 @@ export function SiteHeader({
     locale === "fr" ? "/fr" : ""
   }/docs`;
   const docs = `${base}/Agent/architecture/`;
-  const apiReference = `${base}/Swagger-API/aegis-ai-gateway-api/`;
   return (
     <header className="nav">
       <Link
@@ -57,9 +56,6 @@ export function SiteHeader({
         </Link>
         <a href={docs} target="_blank" rel="noreferrer">
           Documentation <ArrowUpRight size={13} />
-        </a>
-        <a href={apiReference} target="_blank" rel="noreferrer">
-          {t("API Swagger")} <ArrowUpRight size={13} />
         </a>
       </nav>
       <div
