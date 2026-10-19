@@ -160,8 +160,6 @@ export interface User {
   collection: "users";
 }
 /**
- * Rédigez, prévisualisez, puis publiez. Chaque langue possède son propre brouillon.
- *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts".
  */

@@ -10,6 +10,9 @@ import {
 const blocks: Block[] = [
   {
     slug: "callout",
+    admin: {
+      components: { Block: "/src/components/cms/ArticleBlocks#CalloutBlock" },
+    },
     labels: { singular: "Encadré", plural: "Encadrés" },
     fields: [
       {
@@ -29,6 +32,9 @@ const blocks: Block[] = [
   },
   {
     slug: "codeSnippet",
+    admin: {
+      components: { Block: "/src/components/cms/ArticleBlocks#CodeBlock" },
+    },
     labels: { singular: "Bloc de code", plural: "Blocs de code" },
     fields: [
       { name: "filename", label: "Fichier ou légende", type: "text" },
@@ -37,6 +43,9 @@ const blocks: Block[] = [
   },
   {
     slug: "articleTable",
+    admin: {
+      components: { Block: "/src/components/cms/ArticleBlocks#TableBlock" },
+    },
     labels: { singular: "Tableau", plural: "Tableaux" },
     fields: [
       {
@@ -47,6 +56,7 @@ const blocks: Block[] = [
       },
       {
         name: "headers",
+        defaultValue: [{ text: "Colonne 1" }, { text: "Colonne 2" }],
         label: "Colonnes",
         type: "array",
         minRows: 2,
@@ -58,6 +68,7 @@ const blocks: Block[] = [
       },
       {
         name: "rows",
+        defaultValue: [{ cells: [{ text: "" }, { text: "" }] }],
         label: "Lignes",
         type: "array",
         required: true,
@@ -77,6 +88,9 @@ const blocks: Block[] = [
   },
   {
     slug: "articleFAQ",
+    admin: {
+      components: { Block: "/src/components/cms/ArticleBlocks#FAQBlock" },
+    },
     labels: {
       singular: "Questions / réponses",
       plural: "Questions / réponses",
@@ -84,6 +98,7 @@ const blocks: Block[] = [
     fields: [
       {
         name: "items",
+        defaultValue: [{ question: "", answer: "" }],
         label: "Questions",
         type: "array",
         required: true,
