@@ -51,13 +51,13 @@ it("recommends only published volumes and handles requirements above the largest
   ).toHaveAttribute("aria-pressed", "true");
   expect(
     screen.getByRole("link", { name: "Explore the demo" }),
-  ).toHaveAttribute("href", "/en#dashboard");
+  ).toHaveAttribute("href", "/en#console");
 });
 
 it("closes the navigation when moving back to the product", () => {
   render(<Pricing />);
   fireEvent.click(screen.getByRole("button", { name: "Ouvrir le menu" }));
-  const platform = screen.getByRole("link", { name: "La plateforme" });
+  const platform = screen.getByRole("link", { name: "Plateforme" });
   platform.addEventListener("click", (event) => event.preventDefault(), {
     once: true,
   });

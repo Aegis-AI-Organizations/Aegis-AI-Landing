@@ -6,6 +6,8 @@ import RootLayout, {
 vi.mock("next/font/google", () => ({
   Inter: () => ({ variable: "inter" }),
   Orbitron: () => ({ variable: "orbitron" }),
+  Space_Grotesk: () => ({ variable: "space-grotesk" }),
+  JetBrains_Mono: () => ({ variable: "jetbrains-mono" }),
 }));
 describe("localized root layout", () => {
   it.each(["fr", "en"])("sets the document language to %s", async (lang) => {
@@ -20,7 +22,7 @@ describe("localized root layout", () => {
     const metadata = await generateMetadata({
       params: Promise.resolve({ lang: "en" }),
     });
-    expect(metadata.title).toContain("Your infrastructure");
+    expect(metadata.title).toContain("Attack the clone");
     expect(metadata.alternates?.languages).toEqual({ fr: "/fr", en: "/en" });
   });
 });

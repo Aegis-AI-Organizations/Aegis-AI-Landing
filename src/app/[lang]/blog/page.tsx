@@ -121,7 +121,7 @@ export default async function BlogPage({
                 ? "Nos premiers articles sont en préparation. En attendant, découvrez comment Aegis met votre infrastructure à l’épreuve."
                 : "Our first stories are in progress. In the meantime, discover how Aegis puts your infrastructure to the test."}
             </p>
-            <Link href={`/${lang}#dashboard`}>
+            <Link href={`/${lang}#console`}>
               {fr ? "Découvrir la plateforme" : "Explore the platform"}{" "}
               <ArrowUpRight size={16} />
             </Link>

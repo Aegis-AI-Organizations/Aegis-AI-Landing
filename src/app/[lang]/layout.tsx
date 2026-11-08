@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import { Inter, Orbitron } from "next/font/google";
+import {
+  Inter,
+  JetBrains_Mono,
+  Orbitron,
+  Space_Grotesk,
+} from "next/font/google";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -10,6 +15,16 @@ const inter = Inter({
 const orbitron = Orbitron({
   subsets: ["latin"],
   variable: "--font-orbitron",
+  display: "swap",
+});
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+  display: "swap",
+});
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
@@ -29,12 +44,12 @@ export async function generateMetadata({
     metadataBase: new URL(process.env.SITE_URL || "http://localhost:3001"),
     title:
       lang === "en"
-        ? "Aegis AI — Your infrastructure. Put to the test."
-        : "Aegis AI — Votre infrastructure. Mise à l’épreuve.",
+        ? "Aegis AI — Attack the clone. Never production."
+        : "Aegis AI — Attaquez le clone. Jamais la production.",
     description:
       lang === "en"
-        ? "Map your infrastructure, test an isolated copy and examine the evidence. Discover Aegis AI penetration testing."
-        : "Cartographiez votre infrastructure, testez sa copie isolée et examinez les preuves. Découvrez l’approche de pentest Aegis AI.",
+        ? "AI agents continuously test an isolated copy of your infrastructure. Find your vulnerabilities before attackers do, with the fix ready to apply."
+        : "Des agents IA testent en continu une copie isolée de votre infrastructure. Trouvez vos failles avant les attaquants, avec la correction prête à appliquer.",
     alternates: { languages: { fr: "/fr", en: "/en" } },
   };
 }
@@ -49,7 +64,10 @@ export default async function RootLayout({
   const { lang } = await params;
   if (lang !== "fr" && lang !== "en") notFound();
   return (
-    <html lang={lang} className={`${inter.variable} ${orbitron.variable}`}>
+    <html
+      lang={lang}
+      className={`${inter.variable} ${orbitron.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+    >
       <body>
         <LanguageProvider key={lang} locale={lang as Locale}>
           {children}

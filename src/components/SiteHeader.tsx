@@ -34,12 +34,12 @@ export function SiteHeader({
         className={menu ? "open" : ""}
         aria-label={t("Navigation principale")}
       >
-        <a href={`/${locale}#dashboard`} onClick={() => setMenu(false)}>
-          {t("La plateforme")}
+        <a href={`/${locale}#fonctionnement`} onClick={() => setMenu(false)}>
+          {t("Fonctionnement")}
         </a>
-        <a href={`/${locale}#preuves`} onClick={() => setMenu(false)}>
-          {t("Les preuves")}
-        </a>
+        <Link href={`/${locale}/plateforme`} onClick={() => setMenu(false)}>
+          {t("Plateforme")}
+        </Link>
         <Link
           href={`/${locale}/pricing`}
           aria-current={pricing ? "page" : undefined}

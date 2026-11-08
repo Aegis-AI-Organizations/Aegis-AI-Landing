@@ -326,7 +326,7 @@ export default function Pricing() {
             <br />
             <ColorText>{copy.closingAccent}</ColorText>
           </h2>
-          <Link href={`/${locale}#dashboard`} className="button primary">
+          <Link href={`/${locale}#console`} className="button primary">
             {copy.demo}
             <ArrowUpRight size={17} />
           </Link>
