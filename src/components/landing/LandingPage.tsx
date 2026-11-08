@@ -206,7 +206,7 @@ function Context() {
     },
   ];
   return (
-    <section className="sec" style={{ paddingTop: 120 }}>
+    <section className="sec">
       <div className="wrap">
         <div className="stats">
           {stats.map((s, i) => (
@@ -749,7 +749,7 @@ function Faq() {
     ],
   ];
   return (
-    <section className="sec" style={{ paddingTop: 40 }}>
+    <section className="sec">
       <div className="wrap faq-wrap">
         <div className="faq-side">
           <span className="label">{t("Questions")}</span>
@@ -784,7 +784,7 @@ function Faq() {
 export function FinalCta() {
   const { t } = useLanguage();
   return (
-    <section className="sec" style={{ paddingTop: 40 }}>
+    <section className="sec">
       <div className="wrap">
         <Reveal className="surface cta">
           <div className="cta-copy">

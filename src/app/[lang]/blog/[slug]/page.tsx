@@ -30,7 +30,7 @@ export default async function ArticlePage({ params }: Args) {
   const post = await getPost(lang, slug);
   if (!post) notFound();
   return (
-    <BlogShell language={lang}>
+    <BlogShell>
       <BlogArticle post={post} />
     </BlogShell>
   );

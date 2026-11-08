@@ -52,7 +52,16 @@ export function PilotButton({
   );
 }
 
-export function SiteNav({ page }: { page: "home" | "platform" }) {
+const PAGE_PATHS = {
+  home: "",
+  platform: "/plateforme",
+  pricing: "/pricing",
+  blog: "/blog",
+} as const;
+
+export type SitePage = keyof typeof PAGE_PATHS;
+
+export function SiteNav({ page }: { page: SitePage }) {
   const { locale, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -64,7 +73,8 @@ export function SiteNav({ page }: { page: "home" | "platform" }) {
   }, []);
   const home = `/${locale}`;
   const close = () => setOpen(false);
-  const path = page === "platform" ? "/plateforme" : "";
+  const path = PAGE_PATHS[page];
+  const current = (p: SitePage) => (page === p ? "page" : undefined);
   return (
     <header className={`hdr ${scrolled ? "scrolled" : ""}`}>
       <div className="wrap">
@@ -85,15 +95,23 @@ export function SiteNav({ page }: { page: "home" | "platform" }) {
           </a>
           <Link
             href={`${home}/plateforme`}
-            aria-current={page === "platform" ? "page" : undefined}
+            aria-current={current("platform")}
             onClick={close}
           >
             {t("Plateforme")}
           </Link>
-          <Link href={`${home}/pricing`} onClick={close}>
+          <Link
+            href={`${home}/pricing`}
+            aria-current={current("pricing")}
+            onClick={close}
+          >
             {t("Tarifs")}
           </Link>
-          <Link href={`${home}/blog`} onClick={close}>
+          <Link
+            href={`${home}/blog`}
+            aria-current={current("blog")}
+            onClick={close}
+          >
             {t("Journal")}
           </Link>
           <a href={docsUrl(locale)} target="_blank" rel="noreferrer">

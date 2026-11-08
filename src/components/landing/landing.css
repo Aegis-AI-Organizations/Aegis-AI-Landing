@@ -313,8 +313,12 @@ html.lenis body {
 }
 
 /* Sections */
+/* Rythme vertical : chaque section a 64px en haut et en bas, soit 128px entre deux contenus. */
+.lp {
+  --sec-pad: 64px;
+}
 .lp .sec {
-  padding: 136px 0;
+  padding: var(--sec-pad) 0;
   position: relative;
 }
 .lp .head {
@@ -457,7 +461,7 @@ html.lenis body {
 
 /* Hero */
 .lp .hero {
-  padding: 156px 0 40px;
+  padding: 156px 0 calc(var(--sec-pad) - 58px);
   position: relative;
 }
 .lp .hero::before {
@@ -891,6 +895,8 @@ html.lenis body {
 .lp .story {
   height: 360vh;
   position: relative;
+  /* Le texte épinglé est centré (320px de haut) : on remonte la section pour garder l'écart commun. */
+  margin-top: calc(var(--sec-pad) + 144px - 50vh);
 }
 .lp .story-pin {
   position: sticky;
@@ -1004,12 +1010,13 @@ html.lenis body {
 @media (max-width: 980px) {
   .lp .story {
     height: auto;
+    margin-top: 0;
   }
   .lp .story-pin {
     position: relative;
     height: auto;
     grid-template-columns: 1fr;
-    padding: 96px max(20px, 4vw);
+    padding: var(--sec-pad) max(20px, 4vw);
     gap: 24px;
   }
   .lp .story .scene {
@@ -1040,6 +1047,7 @@ html.lenis body {
 .lp .tour {
   height: 420vh;
   position: relative;
+  margin-top: calc(var(--sec-pad) * 2 + 64px - 50vh);
 }
 .lp .tour-pin {
   position: sticky;
@@ -1150,11 +1158,12 @@ html.lenis body {
 @media (max-width: 980px) {
   .lp .tour {
     height: auto;
+    margin-top: 0;
   }
   .lp .tour-pin {
     position: relative;
     height: auto;
-    padding: 96px 0;
+    padding: var(--sec-pad) 0;
   }
   .lp .tour-grid {
     grid-template-columns: 1fr;

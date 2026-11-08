@@ -327,7 +327,7 @@ export default function PlatformPage() {
               </Reveal>
             </section>
 
-            <section className="sec" style={{ paddingTop: 72 }}>
+            <section className="sec">
               <Feature
                 label={t("La preuve")}
                 title={[
@@ -394,7 +394,7 @@ export default function PlatformPage() {
               </Feature>
             </section>
 
-            <section className="sec" style={{ paddingTop: 40 }}>
+            <section className="sec">
               <div className="head">
                 <ScrollText
                   className="h2 two-tone"
@@ -433,7 +433,7 @@ export default function PlatformPage() {
               </div>
             </section>
 
-            <section className="sec" style={{ paddingTop: 40 }}>
+            <section className="sec">
               <div className="faq-wrap">
                 <div className="faq-side">
                   <span className="label">{t("Sécurité et conformité")}</span>
@@ -460,7 +460,7 @@ export default function PlatformPage() {
               </div>
             </section>
 
-            <section className="sec" style={{ paddingTop: 40 }}>
+            <section className="sec">
               <div className="head">
                 <ScrollText
                   className="h2 two-tone"

@@ -1,11 +1,14 @@
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { afterEach, expect, it, vi } from "vitest";
+import {
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  within,
+} from "@testing-library/react";
+import { afterEach, expect, it } from "vitest";
 import Pricing from "./Pricing";
 import { LanguageProvider } from "../i18n/Language";
 
-vi.mock("gsap", () => ({ default: { registerPlugin: vi.fn() } }));
-vi.mock("gsap/ScrollTrigger", () => ({ ScrollTrigger: {} }));
-vi.mock("@gsap/react", () => ({ useGSAP: vi.fn() }));
 afterEach(cleanup);
 
 it("shows the proposed prices and preserves the pricing route when switching language", () => {
@@ -57,7 +60,8 @@ it("recommends only published volumes and handles requirements above the largest
 it("closes the navigation when moving back to the product", () => {
   render(<Pricing />);
   fireEvent.click(screen.getByRole("button", { name: "Ouvrir le menu" }));
-  const platform = screen.getByRole("link", { name: "Plateforme" });
+  const nav = screen.getByRole("navigation", { name: "Navigation principale" });
+  const platform = within(nav).getByRole("link", { name: "Plateforme" });
   platform.addEventListener("click", (event) => event.preventDefault(), {
     once: true,
   });
@@ -66,7 +70,8 @@ it("closes the navigation when moving back to the product", () => {
     screen.getByRole("button", { name: "Ouvrir le menu" }),
   ).toHaveAttribute("aria-expanded", "false");
   fireEvent.click(screen.getByRole("button", { name: "Ouvrir le menu" }));
-  const pricing = screen.getByRole("link", { name: "Tarifs" });
+  const pricing = within(nav).getByRole("link", { name: "Tarifs" });
+  expect(pricing).toHaveAttribute("aria-current", "page");
   pricing.addEventListener("click", (event) => event.preventDefault(), {
     once: true,
   });

@@ -18,7 +18,6 @@ vi.mock("next/headers", () => ({ headers: async () => new Headers() }));
 vi.mock("@payloadcms/richtext-lexical/react", () => ({
   RichText: () => <div>Article body</div>,
 }));
-vi.mock("./SiteHeader", () => ({ SiteHeader: () => <nav>Navigation</nav> }));
 import BlogPage, {
   generateMetadata as blogMetadata,
 } from "@/app/[lang]/blog/page";
