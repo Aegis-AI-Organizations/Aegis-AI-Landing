@@ -18,7 +18,11 @@ import { prefersReducedMotion } from "./motion";
 import "./console.css";
 
 export type ConsoleView =
-  "overview" | "topology" | "pentest" | "findings" | "report";
+  | "overview"
+  | "topology"
+  | "pentest"
+  | "findings"
+  | "report";
 
 export const CONSOLE_VIEWS: ConsoleView[] = [
   "overview",
@@ -75,7 +79,10 @@ function Spark({ pts, color }: { pts: number[]; color: string }) {
   const d = pts
     .map(
       (v, i) =>
-        `${i ? "L" : "M"}${((i * 100) / (pts.length - 1)).toFixed(1)} ${(30 - v * 0.28).toFixed(1)}`,
+        `${i ? "L" : "M"}${((i * 100) / (pts.length - 1)).toFixed(1)} ${(
+          30 -
+          v * 0.28
+        ).toFixed(1)}`,
     )
     .join(" ");
   return (
@@ -134,7 +141,9 @@ function Overview({ active }: { active: boolean }) {
       const id = counter.current++;
       const [color, title, sub] = events[id % events.length];
       const d = new Date();
-      const time = `${String(d.getMinutes()).padStart(2, "0")}:${String(d.getSeconds()).padStart(2, "0")}`;
+      const time = `${String(d.getMinutes()).padStart(2, "0")}:${String(
+        d.getSeconds(),
+      ).padStart(2, "0")}`;
       setFeed((f) => [{ id, color, title, sub, time }, ...f].slice(0, 6));
     };
     push();

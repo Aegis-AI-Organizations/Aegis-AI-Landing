@@ -65,7 +65,7 @@ export function PrismScene({
 
   const tiles = (clone: boolean) =>
     Array.from({ length: TILE_COUNT }, (_, i) => (
-      <div key={i} className={`tile ${clone ? (states[i] ?? "") : ""}`}>
+      <div key={i} className={`tile ${clone ? states[i] ?? "" : ""}`}>
         <i />
       </div>
     ));

@@ -282,7 +282,9 @@ export function useMagnetic<T extends HTMLElement>() {
       return;
     const move = (e: PointerEvent) => {
       const r = el.getBoundingClientRect();
-      el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.18}px, ${(e.clientY - r.top - r.height / 2) * 0.28}px)`;
+      el.style.transform = `translate(${
+        (e.clientX - r.left - r.width / 2) * 0.18
+      }px, ${(e.clientY - r.top - r.height / 2) * 0.28}px)`;
     };
     const leave = () => {
       el.style.transition = "transform .5s cubic-bezier(.34,1.4,.64,1)";
