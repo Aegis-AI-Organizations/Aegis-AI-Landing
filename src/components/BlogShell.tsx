@@ -1,26 +1,14 @@
-import Link from "next/link";
-import { SiteHeader } from "./SiteHeader";
+import { SiteFooter, SiteNav } from "./landing/Chrome";
+import "./landing/landing.css";
 import styles from "./Blog.module.css";
-export function BlogShell({
-  children,
-  language,
-}: {
-  children: React.ReactNode;
-  language: string;
-}) {
+
+/** Cadre commun du journal : même header et même footer que la landing. */
+export function BlogShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className={styles.page}>
-      <SiteHeader blog />
+    <div className={`lp ${styles.page}`}>
+      <SiteNav page="blog" />
       <main id="main-content">{children}</main>
-      <footer className={styles.footer}>
-        <span>© {new Date().getFullYear()} Aegis AI</span>
-        <Link href={`/${language}`}>
-          {language === "fr"
-            ? "Retour à la plateforme"
-            : "Back to the platform"}{" "}
-          ↗
-        </Link>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { headers } from "next/headers";
 import { notFound, redirect } from "next/navigation";
 import { getPayload } from "payload";
 import config from "@payload-config";
+import "@/components/landing/landing.css";
 import styles from "@/components/Blog.module.css";
 import { BlogArticle } from "@/components/BlogArticle";
 export const metadata = {
@@ -30,7 +31,7 @@ export default async function PreviewPage({
   const post = result.docs[0];
   if (!post) notFound();
   return (
-    <div className={styles.page}>
+    <div className={`lp ${styles.page}`}>
       <BlogArticle post={post} preview />
     </div>
   );
