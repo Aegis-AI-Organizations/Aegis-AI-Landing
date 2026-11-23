@@ -338,8 +338,28 @@ html.lenis body {
   max-width: 44ch;
 }
 @media (max-width: 860px) {
-  .lp .sec {
-    padding: 96px 0;
+  /* Sur mobile, 96px entre deux contenus suffisent ; un filet très léger marque le passage d'une section à l'autre. */
+  .lp {
+    --sec-pad: 48px;
+  }
+  .lp :is(.sec, .story, .tour) {
+    position: relative;
+  }
+  .lp :is(.sec, .story, .tour):not(:first-child)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: max(20px, 4vw);
+    right: max(20px, 4vw);
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--line-2) 18%,
+      var(--line-2) 82%,
+      transparent
+    );
+    pointer-events: none;
   }
   .lp .head {
     grid-template-columns: 1fr;
@@ -1163,7 +1183,7 @@ html.lenis body {
   .lp .tour-pin {
     position: relative;
     height: auto;
-    padding: var(--sec-pad) 0;
+    padding-block: var(--sec-pad);
   }
   .lp .tour-grid {
     grid-template-columns: 1fr;
